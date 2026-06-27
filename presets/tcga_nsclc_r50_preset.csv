@@ -1,0 +1,10 @@
+slide_id,seg_level,sthresh,mthresh,close,use_otsu,a_t,a_h,max_n_holes,vis_level,line_thickness,white_thresh,black_thresh,use_padding,contour_fn,keep_ids,exclude_ids
+TCGA-4B-A93V,-1,15,11,2,FALSE,1,1,2,-1,50,5,50,TRUE,four_pt,none,none
+TCGA-05-4244,-1,15,11,2,FALSE,1,1,2,-1,50,5,50,TRUE,four_pt,none,none
+TCGA-05-4245,-1,15,11,2,FALSE,1,1,2,-1,50,5,50,TRUE,four_pt,none,none
+TCGA-05-4249,-1,15,11,2,FALSE,1,1,2,-1,50,5,50,TRUE,four_pt,none,none
+TCGA-6A-AB49,-1,15,11,2,FALSE,1,1,2,-1,50,5,50,TRUE,four_pt,none,none
+TCGA-18-3406,-1,15,11,2,FALSE,1,1,2,-1,50,5,50,TRUE,four_pt,none,none
+TCGA-18-3407,-1,15,11,2,FALSE,1,1,2,-1,50,5,50,TRUE,four_pt,none,none
+TCGA-18-3408,-1,15,11,2,FALSE,1,1,2,-1,50,5,50,TRUE,four_pt,none,none
+TCGA-18-3409,-1,15,11,2,FALSE,1,1,2,-1,50,5,50,TRUE,four_pt,none,none

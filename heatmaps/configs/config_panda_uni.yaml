@@ -1,0 +1,72 @@
+---
+exp_arguments:
+  n_classes: 6
+  save_exp_code: PANDA_UNI_100
+  raw_save_dir: D:/ADGA-main/heatmaps/heatmap_raw_results_PANDA_UNI
+  production_save_dir: D:/ADGA-main/heatmaps/heatmap_production_results_PANDA_UNI
+  batch_size: 1
+
+data_arguments:
+  data_dir: D:/ADGA_Datasets/heatmap_slides/PANDA/train_images
+  patch_dir: D:/ADGA_Datasets/heatmap_slides/PANDA/patches
+  feat_dir: D:/ADGA_Datasets/PANDA/UNI_features/pt_files
+  process_list: D:/ADGA-main/dataset_csv/panda_heatmap.csv
+  preset: null
+  slide_ext: .tiff
+  label_dict:
+    grade_0: 0
+    grade_1: 1
+    grade_2: 2
+    grade_3: 3
+    grade_4: 4
+    grade_5: 5
+
+patching_arguments:
+  patch_size: 256
+  overlap: 0.0
+  patch_level: 0
+  custom_downsample: 1
+
+model_arguments:
+  ckpt_path: D:/ADGA-main/results/PANDA_UNI_100_s1/s_0_best_checkpoint.pt
+  model_type: clam_sb
+  initiate_fn: initiate_model
+  model_size: small
+  drop_out: 0.25
+  embed_dim: 1024
+
+heatmap_arguments:
+  vis_level: -1
+  alpha: 0.55
+  blank_canvas: false
+  save_orig: true
+  save_ext: jpg
+  use_ref_scores: false
+  blur: false
+  use_center_shift: false
+  use_roi: false
+  calc_heatmap: false
+  binarize: false
+  binary_thresh: -1
+  custom_downsample: 1
+  cmap: jet
+  convert_to_percentiles: true
+
+sample_arguments:
+  samples:
+    - name: topk_high_attention_panda_uni
+      sample: true
+      seed: 1
+      k: 15
+      mode: topk
+
+data_loader_arguments:
+  num_workers: 0
+
+# chief修改
+# save_exp_code: PANDA_CHIEF_100
+# raw_save_dir: D:/ADGA-main/heatmaps/heatmap_raw_results_PANDA_CHIEF
+# production_save_dir: D:/ADGA-main/heatmaps/heatmap_production_results_PANDA_CHIEF
+# feat_dir: D:/ADGA_Datasets/PANDA/CHIEF_features/pt_files
+# ckpt_path: D:/ADGA-main/results/PANDA_CHIEF_100_s1/s_0_best_checkpoint.pt
+# embed_dim: 768

@@ -1,0 +1,77 @@
+---
+exp_arguments:
+  # 类别数量
+  n_classes: 2
+  # 保存生成的图像和资产的名称标签
+  save_exp_code: HEATMAP_OUTPUT_camelyon16_r50
+  # 保存原始资产文件的位置
+  raw_save_dir: heatmaps/heatmap_raw_results_camelyon16_r50
+  # 保存最终热力图的位置
+  production_save_dir: heatmaps/heatmap_production_results_camelyon16_r50
+  # 批处理大小
+  batch_size: 128
+
+data_arguments: 
+  # 数据存储位置；使用绝对路径指向包含 .tif 文件的目录
+  data_dir: "F:/论文/CLAM+Dynamic/CLAM-master/slides/C16"
+  # 数据目录中的键名（如果使用字典映射）
+  data_dir_key: source
+  # 包含 slide_id 的 CSV 列表；使用绝对路径
+  process_list: "F:/论文/CLAM+Dynamic/CLAM-master/dataset_csv/camelyon16_r50_heatmap.csv"
+  # 分割/补丁提取的预设文件；使用绝对路径
+  preset: "F:/论文/CLAM+Dynamic/CLAM-master/presets/camelyon16_r50_preset.csv"
+  # 幻灯片的文件扩展名
+  slide_ext: .tif
+  # 标签字典，用于字符串到整数的映射（根据任务调整）
+  label_dict:
+    '0': 0
+    '1': 1
+
+patching_arguments:
+  # 补丁相关参数
+  patch_size: 256
+  overlap: 0.5
+  patch_level: 0
+  custom_downsample: 1
+
+encoder_arguments:
+  # 预训练编码器模型的参数
+  model_name: resnet50_trunc # 支持选项：resnet50_trunc, uni_v1, conch_v1
+  target_img_size: 224 # 在输入编码器前调整图像大小
+
+model_arguments: 
+  # 从检查点初始化模型的参数
+  ckpt_path: "F:\论文\CLAM+Dynamic\CLAM-master\results\camelyon16_R50_100_s1\s_1_checkpoint.pt"
+  model_type: clam_sb # 选择模型类型：clam_sb（单分支）或 clam_mb（多分支）
+  initiate_fn: initiate_model
+  model_size: small
+  drop_out: 0.0
+  embed_dim: 1024 # 根据训练命令设置为 512
+
+heatmap_arguments:
+  # 热力图生成相关参数
+  vis_level: 1
+  alpha: 0.4
+  blank_canvas: false
+  save_orig: true
+  save_ext: jpg
+  use_ref_scores: true
+  blur: false
+  use_center_shift: true
+  use_roi: false 
+  calc_heatmap: true
+  binarize: false
+  binary_thresh: -1
+  custom_downsample: 1
+  cmap: jet
+
+sample_arguments:
+  samples:
+    - name: "topk_high_attention_camelyon16_r50"
+      sample: true
+      seed: 1
+      k: 15 # 保存前 k 个补丁
+      mode: topk
+
+data_loader_arguments:
+  num_workers: 0

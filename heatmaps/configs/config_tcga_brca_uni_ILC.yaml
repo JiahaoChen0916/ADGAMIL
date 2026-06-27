@@ -1,0 +1,63 @@
+---
+exp_arguments:
+  n_classes: 2
+  save_exp_code: TCGA_BRCA_UNI_100
+  raw_save_dir: D:/ADGA-main/heatmaps/heatmap_raw_results_BRCA_UNI
+  production_save_dir: D:/ADGA-main/heatmaps/heatmap_production_results_BRCA_UNI
+  batch_size: 64
+
+data_arguments:
+  data_dir: D:/ADGA_Datasets/heatmap_slides/BRCA/ILC/Slides
+  data_dir_key: source
+  process_list: D:/ADGA-main/dataset_csv/tcga_brca_heatmap_ILC.csv
+  preset: null
+  slide_ext: .svs
+  label_dict:
+    IDC: 0
+    ILC: 1
+
+patching_arguments:
+  patch_size: 256
+  overlap: 0.25
+  patch_level: 0
+  custom_downsample: 1
+
+encoder_arguments:
+  model_name: uni_v1
+  target_img_size: 224
+
+model_arguments:
+  ckpt_path: D:/ADGA-main/results/TCGA_BRCA_UNI_100_s1/s_0_best_checkpoint.pt
+  model_type: clam_sb
+  initiate_fn: initiate_model
+  model_size: small
+  drop_out: 0.25
+  embed_dim: 1024
+
+heatmap_arguments:
+  vis_level: 1
+  alpha: 0.45
+  blank_canvas: false
+  save_orig: true
+  save_ext: png
+  use_ref_scores: true
+  blur: true
+  use_center_shift: true
+  use_roi: false
+  calc_heatmap: true
+  binarize: false
+  binary_thresh: -1
+  custom_downsample: 1
+  cmap: jet
+  convert_to_percentiles: true
+
+sample_arguments:
+  samples:
+    - name: topk_high_attention_brca_uni
+      sample: true
+      seed: 1
+      k: 15
+      mode: topk
+
+data_loader_arguments:
+  num_workers: 0

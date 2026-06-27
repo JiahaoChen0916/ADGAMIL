@@ -1,0 +1,3 @@
+﻿label,train,val,test
+LUAD,332,41,94
+LUSC,340,43,95
